@@ -23,7 +23,6 @@ namespace LiquorStore
                 .SetBasePath(currentEnvironment.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{currentEnvironment.EnvironmentName}.json", optional: true)
-                // .AddJsonFile("azurekeyvault.json", optional:false, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -38,9 +37,6 @@ namespace LiquorStore
         {
             services.AddControllersWithViews();
 
-            var connectionString = Configuration.GetValue<string>("ConnectionString");
-            services.AddDbContext<LiquorStoreContext>(m => { m.UseSqlServer(connectionString); });
-
             services.Scan(scan => scan
                 .FromApplicationDependencies(a => a.FullName.StartsWith("LiquorStore"))
                 .AddClasses(publicOnly: true)
@@ -48,8 +44,14 @@ namespace LiquorStore
                     filter.Where(implementation => implementation.Name.Equals($"I{service.Name}", StringComparison.OrdinalIgnoreCase)))
                 .WithTransientLifetime());
 
-            //  services.AddScoped<IUserBusiness, UserBusiness>();
-            //  services.AddScoped<IUserRepository, UserRepository>();
+            var connectionString = Configuration.GetValue<string>("ConnectionString");
+            services.AddDbContext<LiquorStoreContext>(m =>
+            {
+                m.UseSqlServer(connectionString);
+            });
+
+            //services.AddTransient<IUserBusiness, UserBusiness>();
+            //services.AddTransient<IUserRepository, UserRepository>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

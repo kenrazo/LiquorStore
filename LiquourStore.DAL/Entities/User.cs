@@ -6,6 +6,9 @@ using System.Text;
 
 namespace LiquourStore.DAL.Entities
 {
+    /// <summary>
+    /// The user entities
+    /// </summary>
     public class User
     {
         [Key]
@@ -14,6 +17,8 @@ namespace LiquourStore.DAL.Entities
         [MaxLength(50)]
         public string Username { get; set; }
         public string Password { get; set; }
+        public string Salt { get; set; }
+
 
     }
 }

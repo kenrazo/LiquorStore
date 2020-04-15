@@ -1,12 +1,11 @@
-﻿using System;
+﻿using LiquorStore.Business.LogicCollection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LiquorStore.Business.LogicCollection;
-using LiquourStore.DAL.Context;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using LiquorStore.Business.Dtos;
 
 namespace LiquorStore.Controllers
 {
@@ -32,7 +31,11 @@ namespace LiquorStore.Controllers
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
             //  var a = await _userBusiness.Authenticate("test", "test");
-            var a = await _userBusiness.Authenticate("test", "test");
+            var a = await _userBusiness.Authenticate(new AuthenticationInputDto()
+            {
+                Username = "qwe",
+                Password = "asd"
+            });
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

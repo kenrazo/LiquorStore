@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using LiquorStore.Business.Dtos;
 
 namespace LiquorStore.Business.LogicCollection
 {
     public interface IUserBusiness
     {
-        Task<bool> Authenticate(string username, string password);
+        Task<AuthenticationOutputDto> Authenticate(AuthenticationInputDto input);
     }
 }

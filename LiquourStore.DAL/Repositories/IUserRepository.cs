@@ -6,8 +6,8 @@ using LiquourStore.DAL.Entities;
 
 namespace LiquourStore.DAL.Repositories
 {
-    public interface IUserRepository : IRepositoryBase<User>
+    public interface IUserRepository : IRepositoryBase<User, int>
     {
-        Task<bool> Authenticate(string username, string password);
+        Task<User> Authenticate(string username, string password);
     }
 }

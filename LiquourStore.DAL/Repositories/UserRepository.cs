@@ -1,26 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using LiquourStore.DAL.Context;
 using LiquourStore.DAL.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace LiquourStore.DAL.Repositories
 {
-    public class UserRepository : RepositoryBase<User>, IUserRepository
+    /// <summary>
+    /// User repository
+    /// </summary>
+    /// <seealso cref="int" />
+    /// <seealso cref="LiquourStore.DAL.Repositories.IUserRepository" />
+    public class UserRepository : RepositoryBase<User, int>, IUserRepository
     {
-        private readonly LiquorStoreContext _context;
         public UserRepository(LiquorStoreContext context) : base(context)
         {
-            _context = context;
         }
-        public async Task<bool> Authenticate(string username, string password)
+        /// <summary>
+        /// Authenticates the specified username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
+        public async Task<User> Authenticate(string username, string password)
         {
-            var a = await _context.Users.ToListAsync();
-            return true;
+            var param1 = new SqlParameter("@Username", username);
+            var param2 = new SqlParameter("@Password", password);
+
+            var a = LiquorStoreContext.Database.ExecuteSqlRaw("usp_LoginUser @Username, @Password", param1, param2);
+          //  var b = await a.ToListAsync();
+            return new User();
         }
-
-
+        /// <summary>
+        /// Gets the liquor store context.
+        /// </summary>
+        /// <value>
+        /// The liquor store context.
+        /// </value>
+        public LiquorStoreContext LiquorStoreContext => Context as LiquorStoreContext;
     }
 }
