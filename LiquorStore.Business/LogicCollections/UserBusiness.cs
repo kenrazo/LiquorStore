@@ -39,7 +39,6 @@ namespace LiquorStore.Business.LogicCollection
         public async Task<AuthenticationOutputDto> Authenticate(AuthenticationInputDto input)
         {
             var result = new AuthenticationOutputDto();
-            Logger.LogError(new Exception(),"Tang ina mo" );
             using (var unitOfWork = UnitOfWorkFactory.Create())
             {
                 var user = await unitOfWork.User.Authenticate(input.Username, input.Password);
@@ -52,6 +51,7 @@ namespace LiquorStore.Business.LogicCollection
 
                     await GenerateCookieAsync(user.Id);
                 }
+
             }
 
             return result;
