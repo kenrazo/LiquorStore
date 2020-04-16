@@ -16,10 +16,10 @@ namespace LiquorStore.DAL.UnitOfWork
         public IUserRepository User { get; }
         private readonly LiquorStoreContext _context;
 
-        public UnitOfWork(LiquorStoreContext context, IUserRepository user)
+        public UnitOfWork(LiquorStoreContext context)
         {
             _context = context;
-            User = user;
+            User = new UserRepository(_context);
         }
 
         /// <summary>

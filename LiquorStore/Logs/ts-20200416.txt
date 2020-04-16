@@ -1,0 +1,7 @@
+2020-04-16T15:10:13.3551421+08:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-04-16T15:10:13.3638368+08:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-04-16T15:10:13.3656968+08:00  [INF] Content root path: "C:\Users\kenra\Source\Repos\kenrazo\LiquorStore\LiquorStore" (b5d60022)
+2020-04-16T15:10:17.6485222+08:00  [ERR] Browserslist: caniuse-lite is outdated. Please run next command `npm update`
+ (ad9dc99d)
+2020-04-16T15:10:48.9076064+08:00 80000048-0004-fc00-b63f-84710c7967bb [ERR] Tang ina mo (54a373dc)
+System.Exception: Exception of type 'System.Exception' was thrown.

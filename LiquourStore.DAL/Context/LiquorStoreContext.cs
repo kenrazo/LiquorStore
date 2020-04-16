@@ -27,7 +27,7 @@ namespace LiquourStore.DAL.Context
         public LiquorStoreContext(DbContextOptions<LiquorStoreContext> options) :
             base(options)
         {
-         //   Database.EnsureCreated();
+            //   Database.EnsureCreated();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 using LiquourStore.DAL.Context;
@@ -29,10 +31,9 @@ namespace LiquourStore.DAL.Repositories
         {
             var param1 = new SqlParameter("@Username", username);
             var param2 = new SqlParameter("@Password", password);
-
-            var a = LiquorStoreContext.Database.ExecuteSqlRaw("usp_LoginUser @Username, @Password", param1, param2);
-          //  var b = await a.ToListAsync();
-            return new User();
+            var users = await LiquorStoreContext.Users
+                .FromSqlRaw("EXECUTE usp_LoginUser @Username, @Password", param1, param2).ToListAsync();
+            return users.FirstOrDefault();
         }
         /// <summary>
         /// Gets the liquor store context.
