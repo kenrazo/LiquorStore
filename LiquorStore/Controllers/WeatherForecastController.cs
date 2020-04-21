@@ -28,14 +28,8 @@ namespace LiquorStore.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public IEnumerable<WeatherForecast> Get()
         {
-            //  var a = await _userBusiness.Authenticate("test", "test");
-            var a = await _userBusiness.Authenticate(new AuthenticationInputDto()
-            {
-                Username = "qwe",
-                Password = "asd"
-            });
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

@@ -28,7 +28,7 @@ export class FetchData extends Component {
             <tr key={forecast.date}>
               <td>{forecast.date}</td>
               <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
+                <td>{forecast.temperatureF}</td>
               <td>{forecast.summary}</td>
             </tr>
           )}

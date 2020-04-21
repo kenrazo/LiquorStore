@@ -48,10 +48,8 @@ namespace LiquorStore.Business.LogicCollection
                     {
                         UserId = user.Id
                     };
-
                     await GenerateCookieAsync(user.Id);
                 }
-
             }
 
             return result;
