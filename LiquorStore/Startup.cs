@@ -7,6 +7,7 @@ using LiquorStore.ActionFilters;
 using LiquorStore.Business.LogicCollection;
 using LiquorStore.Business.LogicCollections;
 using LiquorStore.Common.Helpers;
+using LiquorStore.Middlewares;
 using LiquourStore.DAL.Context;
 using LiquourStore.DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -115,6 +116,7 @@ namespace LiquorStore
             app.UseSpaStaticFiles();
             
             app.UseAuthentication();
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

@@ -10,6 +10,8 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
+import userService from "../services/user-service";
+import history from "../history";
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -22,7 +24,18 @@ export class NavMenu extends Component {
       collapsed: true,
     };
   }
-
+  handleClickLogOut(e) {
+    e.preventDefault();
+    userService.logOut().then((data) => {
+      if (data.status === 200) {
+        console.log(data);
+        localStorage.removeItem("isLoggedIn");
+        history.push("/sign-in");
+      } else {
+        alert("log-out error");
+      }
+    });
+  }
   toggleNavbar() {
     this.setState({
       collapsed: !this.state.collapsed,
@@ -63,8 +76,12 @@ export class NavMenu extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/login">
-                    Login
+                  <NavLink
+                    href="#"
+                    className="text-dark"
+                    onClick={this.handleClickLogOut.bind(this)}
+                  >
+                    Logout
                   </NavLink>
                 </NavItem>
               </ul>

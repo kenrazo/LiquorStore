@@ -31,5 +31,17 @@ namespace LiquorStore.Controllers
             await _userBusiness.Authenticate(input);
             return Ok();
         }
+
+        /// <summary>
+        /// Logout endpoint
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Logout()
+        {
+            await _userBusiness.Logout();
+            return Ok();
+        }
     }
 }

@@ -11,8 +11,15 @@ const userService = () => {
       .catch((res) => res);
   };
 
+  const logOut = (userId) => {
+    return axios
+      .get("/api/user/Logout")
+      .then((res) => res)
+      .catch((res) => res);
+  };
   return {
     authenticate,
+    logOut,
   };
 };
 

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LiquorStore.Business.Dtos;
 using LiquorStore.Business.LogicCollections;
+using LiquorStore.Common.Entities;
+using LiquorStore.Common.Exceptions;
 using LiquorStore.Common.Helpers;
 using LiquorStore.DAL.UnitOfWork;
 using LiquourStore.DAL.Entities;
@@ -50,9 +52,22 @@ namespace LiquorStore.Business.LogicCollection
                     };
                     await GenerateCookieAsync(user.Id);
                 }
+                else
+                {
+                    throw new NotFoundException(new ErrorResponse("user not found"));
+                }
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Logouts this instance.
+        /// </summary>
+        public async Task Logout()
+        {
+            await _httpContextAccessor.HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
         private async Task GenerateCookieAsync(int userId)
