@@ -43,7 +43,7 @@ namespace LiquorStore.Business.LogicCollection
             var result = new AuthenticationOutputDto();
             using (var unitOfWork = UnitOfWorkFactory.Create())
             {
-                var user = await unitOfWork.User.Authenticate(input.Username, input.Password);
+                var user = await unitOfWork.Users.Authenticate(input.Username, input.Password);
                 if (user != null)
                 {
                     result = new AuthenticationOutputDto()

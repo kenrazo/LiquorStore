@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LiquorStore.DAL.Entities;
 using LiquourStore.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,8 @@ namespace LiquourStore.DAL.Context
         /// <value>
         /// The users.
         /// </value>
-        public DbSet<User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Liquor> Liquors { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiquorStoreContext"/> class.
@@ -28,6 +30,14 @@ namespace LiquourStore.DAL.Context
             base(options)
         {
             //   Database.EnsureCreated();
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
         }
     }
 }

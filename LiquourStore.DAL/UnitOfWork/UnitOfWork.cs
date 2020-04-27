@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using LiquorStore.DAL.Repositories;
 using LiquourStore.DAL.Context;
 using LiquourStore.DAL.Repositories;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace LiquorStore.DAL.UnitOfWork
 {
@@ -13,13 +15,15 @@ namespace LiquorStore.DAL.UnitOfWork
     /// <seealso cref="LiquorStore.DAL.UnitOfWork.IUnitOfWork" />
     public class UnitOfWork : IUnitOfWork
     {
-        public IUserRepository User { get; }
+        public IUserRepository Users { get; }
+        public ILiquorRepository Liquors { get; }
         private readonly LiquorStoreContext _context;
 
         public UnitOfWork(LiquorStoreContext context)
         {
             _context = context;
-            User = new UserRepository(_context);
+            Users = new UserRepository(_context);
+            Liquors = new LiquorRepository(_context);
         }
 
         /// <summary>

@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "reactstrap";
 import UserService from "../../services/user-service";
 import history from "../../history";
+import "../Login/Login.css";
+import Auxilary from "../../hoc/Auxilary";
 
 class Login extends Component {
   state = {
@@ -32,31 +34,34 @@ class Login extends Component {
   };
   render() {
     return (
-      <div>
-        <TextField
-          required
-          id="standard-basic"
-          label="Username"
-          value={this.state.username}
-          onChange={this.handleOnChange.bind(this, "username")}
-        />
-        <br></br>
-        <TextField
-          required
-          id="standard-basic"
-          label="Password"
-          value={this.state.password}
-          onChange={this.handleOnChange.bind(this, "password")}
-        />
-        <br></br>
-        <br></br>
-        <Button
-          className="btn btn-primary btn-block"
-          onClick={this.loginHandler}
-        >
-          Submit
-        </Button>
-      </div>
+      <Auxilary>
+        <main className="Container">
+          <div>
+            <TextField
+              required
+              id="standard-basic"
+              label="Username"
+              value={this.state.username}
+              onChange={this.handleOnChange.bind(this, "username")}
+            />
+          </div>
+          <div>
+            <TextField
+              required
+              id="standard-basic"
+              label="Password"
+              value={this.state.password}
+              onChange={this.handleOnChange.bind(this, "password")}
+            />
+          </div>
+          <Button
+            className="btn btn-primary button"
+            onClick={this.loginHandler}
+          >
+            Submit
+          </Button>
+        </main>
+      </Auxilary>
     );
   }
 }

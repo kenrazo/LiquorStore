@@ -3,14 +3,16 @@ using LiquourStore.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LiquorStore.DAL.Migrations
 {
     [DbContext(typeof(LiquorStoreContext))]
-    partial class LiquorStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20200427034826_AddLiquorTable")]
+    partial class AddLiquorTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

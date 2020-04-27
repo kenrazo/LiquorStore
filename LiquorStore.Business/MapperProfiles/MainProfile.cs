@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
 using AutoMapper;
+using LiquorStore.Business.Dtos;
+using LiquorStore.DAL.Entities;
 
 namespace LiquorStore.Business.MapperProfiles
 {
@@ -15,7 +17,7 @@ namespace LiquorStore.Business.MapperProfiles
 
         private void MappingProfile()
         {
-
+            CreateMap<Liquor, LiquorOutputDto>();
         }
     }
 }

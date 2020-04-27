@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch, Router, Redirect } from "react-router";
-import { Layout, LayoutLogin } from "./components/Layout";
-import { Home } from "./components/Home";
-import Login from "./components/Login/Login";
+import { Layout, LayoutLogin } from "./components/Layout/Layout";
+import { Home } from "./containers/Home/Home";
+import { FetchData } from "./components/FetchData";
+import Login from "./containers/Login/Login";
 import history from "./history";
 import "./custom.css";
 
@@ -50,6 +51,7 @@ export default class App extends Component {
         <Switch>
           <LoginLayoutRoute path="/sign-in" component={Login} />
           <AppLayoutRoute exact path="/" component={Home} />
+          <AppLayoutRoute path="/fetch-data" component={FetchData} />
         </Switch>
       </Router>
     );
