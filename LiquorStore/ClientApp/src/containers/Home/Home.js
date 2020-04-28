@@ -120,24 +120,22 @@ export class Home extends Component {
     ];
     return (
       <div>
-        <div>
-          <Breadcrumb tag="nav" listTag="div">
-            <BreadcrumbItem active tag="span">
-              Liquors
-            </BreadcrumbItem>
-          </Breadcrumb>
-          <h1>Liquors</h1>
-          <br />
-          <RemoteTable
-            columns={columns}
-            keyField="liquorId"
-            data={this.state.liquors}
-            page={this.state.pageNumber}
-            sizePerPage={this.state.pageSize}
-            totalSize={this.state.totalCount}
-            onTableChange={this.handleTableChange}
-          />
-        </div>
+        <Breadcrumb tag="nav" listTag="div">
+          <BreadcrumbItem active tag="span">
+            Liquors
+          </BreadcrumbItem>
+        </Breadcrumb>
+        <h1>Liquors</h1>
+        <br />
+        <RemoteTable
+          columns={columns}
+          keyField="liquorId"
+          data={this.state.liquors}
+          page={this.state.pageNumber}
+          sizePerPage={this.state.pageSize}
+          totalSize={this.state.totalCount}
+          onTableChange={this.handleTableChange}
+        />
       </div>
     );
   }

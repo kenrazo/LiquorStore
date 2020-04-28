@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
+using LiquorStore.DAL.Entities.DatabaseEntities;
 using LiquourStore.DAL.Context;
-using LiquourStore.DAL.Entities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using LiquourStore.DAL.Entities;
+using LiquorStore.DAL.Entities.DatabaseEntities;
 
 namespace LiquourStore.DAL.Repositories
 {

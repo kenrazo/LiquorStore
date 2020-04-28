@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LiquorStore.DAL.Entities;
+using LiquorStore.DAL.Entities.DatabaseEntities;
 using LiquorStore.DAL.Entities.ParameterEntities;
 using LiquorStore.DAL.Entities.ReadEntities;
 using LiquorStore.DAL.Helper;
@@ -19,10 +20,15 @@ namespace LiquorStore.DAL.Repositories
         {
         }
 
-        public async Task<PaginatedOutput<Liquor>> GetPaginatedData(PaginatedDataInput input)
+        public async Task<PaginatedOutput<LiquorOutput>> GetPaginatedData(PaginatedDataInput input)
         {
-            return await PaginationHelper<Liquor>
-                .ToPagedList( LiquorStoreContext.Liquors.OrderBy(m=> m.LiquorId), input);
+            return await PaginationHelper<LiquorOutput>
+                .ToPagedList( LiquorStoreContext.Liquors.Select(m=> new LiquorOutput()
+                {
+                    LiquorType = m.LiquorType.LiquorTypeName,
+                    LiquorId = m.LiquorId,
+                    LiquorName = m.LiquorName
+                }).OrderBy(m=> m.LiquorId), input);
         }
 
         public LiquorStoreContext LiquorStoreContext => Context as LiquorStoreContext;

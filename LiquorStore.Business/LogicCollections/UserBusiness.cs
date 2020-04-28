@@ -11,7 +11,6 @@ using LiquorStore.Common.Entities;
 using LiquorStore.Common.Exceptions;
 using LiquorStore.Common.Helpers;
 using LiquorStore.DAL.UnitOfWork;
-using LiquourStore.DAL.Entities;
 using LiquourStore.DAL.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

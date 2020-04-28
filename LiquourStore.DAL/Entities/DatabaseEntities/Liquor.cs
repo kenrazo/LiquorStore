@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LiquorStore.DAL.Entities
+namespace LiquorStore.DAL.Entities.DatabaseEntities
 {
     public class Liquor
     {
@@ -11,7 +10,8 @@ namespace LiquorStore.DAL.Entities
         public int LiquorId { get; set; }
 
         public string LiquorName { get; set; }
-        public string LiquorType  { get; set; }
+        public int LiquorTypeId  { get; set; }
+        public LiquorType LiquorType { get; set; }
 
     }
 }

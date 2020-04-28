@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using LiquorStore.DAL.Entities;
-using LiquourStore.DAL.Entities;
+using LiquorStore.DAL.Entities.DatabaseEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LiquourStore.DAL.Context
