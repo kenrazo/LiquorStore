@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LiquorStore.DAL.Helper
 {
-    public partial class PaginationHelper<T>
+    public class PaginationHelper<T>
     {
         public static async Task <PaginatedOutput<T>> ToPagedList(IQueryable<T> source, PaginatedDataInput input)
         {
