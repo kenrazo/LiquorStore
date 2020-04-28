@@ -5,6 +5,8 @@ using System.Xml.Linq;
 using AutoMapper;
 using LiquorStore.Business.Dtos;
 using LiquorStore.DAL.Entities;
+using LiquorStore.DAL.Entities.ParameterEntities;
+using LiquorStore.DAL.Entities.ReadEntities;
 
 namespace LiquorStore.Business.MapperProfiles
 {
@@ -18,6 +20,9 @@ namespace LiquorStore.Business.MapperProfiles
         private void MappingProfile()
         {
             CreateMap<Liquor, LiquorOutputDto>();
+            CreateMap<PaginatedInputDto, PaginatedDataInput>();
+            CreateMap<PaginatedOutput<Liquor>, PaginatedOutputDto<LiquorOutputDto>>();
+            CreateMap<PaginatedInformationOutput, PaginatedInformationOutputDto>();
         }
     }
 }

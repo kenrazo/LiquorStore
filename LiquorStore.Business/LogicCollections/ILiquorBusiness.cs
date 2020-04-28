@@ -15,6 +15,6 @@ namespace LiquorStore.Business.LogicCollections
         /// Gets this instance.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<LiquorOutputDto>> Get();
+        Task<PaginatedOutputDto<LiquorOutputDto>> GetPaginatedData(PaginatedInputDto input);
     }
 }

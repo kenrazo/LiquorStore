@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LiquorStore.Business.Dtos;
 using LiquorStore.Common.Helpers;
+using LiquorStore.DAL.Entities.ParameterEntities;
+using LiquorStore.DAL.Entities.ReadEntities;
 using LiquorStore.DAL.UnitOfWork;
 
 namespace LiquorStore.Business.LogicCollections
@@ -17,7 +19,7 @@ namespace LiquorStore.Business.LogicCollections
     public class LiquorBusiness : BaseBusiness<LiquorBusiness>, ILiquorBusiness
     {
         public LiquorBusiness(IUnitOfWorkFactory unitOfWorkFactory, IMapper mapper,
-            IRequestInfo requestInfo, ILoggerAdapter<LiquorBusiness> logger) 
+            IRequestInfo requestInfo, ILoggerAdapter<LiquorBusiness> logger)
             : base(unitOfWorkFactory, mapper, requestInfo, logger)
         {
         }
@@ -26,13 +28,13 @@ namespace LiquorStore.Business.LogicCollections
         /// Gets this instance.
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<LiquorOutputDto>> Get()
+        public async Task<PaginatedOutputDto<LiquorOutputDto>> GetPaginatedData(PaginatedInputDto input)
         {
-            var result = new List<LiquorOutputDto>();
             using (var unitOfWork = UnitOfWorkFactory.Create())
             {
-                var data = await unitOfWork.Liquors.GetAll();
-                return Mapper.Map<IEnumerable<LiquorOutputDto>>(data);
+                var parameter = Mapper.Map<PaginatedDataInput>(input);
+                var data = await unitOfWork.Liquors.GetPaginatedData(parameter);
+                return Mapper.Map<PaginatedOutputDto<LiquorOutputDto>>(data);
             }
         }
     }

@@ -30,7 +30,7 @@ namespace LiquorStore
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment currentEnvironment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment currentEnvironment)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(currentEnvironment.ContentRootPath)
@@ -43,7 +43,7 @@ namespace LiquorStore
         }
 
         public IConfiguration Configuration { get; }
-        private IHostingEnvironment CurrentEnvironment { get; }
+        private IWebHostEnvironment CurrentEnvironment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)

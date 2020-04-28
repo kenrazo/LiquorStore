@@ -19,8 +19,8 @@ namespace LiquourStore.DAL.Context
         /// <value>
         /// The users.
         /// </value>
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Liquor> Liquors { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Liquor> Liquors { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LiquorStoreContext"/> class.
