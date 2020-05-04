@@ -23,7 +23,14 @@ const LiquorService = () => {
     return returnObject;
   };
 
-  return { getPaginatedData };
+  const addLiquor = (liquorName, liquorTypeId) => {
+    return axios
+      .post("/api/liquor", { liquorName, liquorTypeId })
+      .then((res) => res)
+      .catch((res) => res);
+  };
+
+  return { getPaginatedData, addLiquor };
 };
 
 export default LiquorService();

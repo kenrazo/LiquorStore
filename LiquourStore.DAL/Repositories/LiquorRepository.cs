@@ -23,12 +23,14 @@ namespace LiquorStore.DAL.Repositories
         public async Task<PaginatedOutput<LiquorOutput>> GetPaginatedData(PaginatedDataInput input)
         {
             return await PaginationHelper<LiquorOutput>
-                .ToPagedList( LiquorStoreContext.Liquors.Select(m=> new LiquorOutput()
-                {
-                    LiquorType = m.LiquorType.LiquorTypeName,
-                    LiquorId = m.LiquorId,
-                    LiquorName = m.LiquorName
-                }).OrderBy(m=> m.LiquorId), input);
+                .ToPagedList(LiquorStoreContext.Liquors
+                    .Where(m=> m.LiquorName.Contains(string.IsNullOrWhiteSpace(input.SearchKeyWord) ? string.Empty : input.SearchKeyWord))
+                    .Select(m => new LiquorOutput()
+                    {
+                        LiquorType = m.LiquorType.LiquorTypeName,
+                        LiquorId = m.LiquorId,
+                        LiquorName = m.LiquorName
+                    }).OrderBy(m => m.LiquorId), input);
         }
 
         public LiquorStoreContext LiquorStoreContext => Context as LiquorStoreContext;

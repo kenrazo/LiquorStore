@@ -38,5 +38,12 @@ namespace LiquorStore.Controllers
             Response.Headers.Add("Pagination", xPaginationJsonOutput);
             return Ok(resultObject.Value);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] LiquorInputDto input)
+        {
+            await _liquorBusiness.Add(input);
+            return Created(String.Empty, null);
+        }
     }
 }

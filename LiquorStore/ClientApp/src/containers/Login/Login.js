@@ -17,7 +17,6 @@ class Login extends Component {
   }
 
   loginHandler = () => {
-    console.log("asd");
     UserService.authenticate(this.state.username, this.state.password).then(
       (data) => {
         if (data.status === 200) {

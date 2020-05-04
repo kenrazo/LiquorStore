@@ -1,40 +1,9 @@
 import React, { Component } from "react";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import liquorService from "../../services/client-service";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
-import BootstrapTable from "react-bootstrap-table-next";
-import paginationFactory from "react-bootstrap-table2-paginator";
-
-const { SearchBar } = Search;
-const RemoteTable = ({
-  columns,
-  keyField,
-  data,
-  page,
-  sizePerPage,
-  onTableChange,
-  totalSize,
-}) => (
-  <div>
-    <ToolkitProvider keyField={keyField} data={data} columns={columns} search>
-      {(props) => (
-        <div>
-          <SearchBar {...props.searchProps} />
-          <BootstrapTable
-            {...props.baseProps}
-            remote
-            onTableChange={onTableChange}
-            pagination={paginationFactory({ page, sizePerPage, totalSize })}
-            striped
-            hover
-            condensed
-            noDataIndication="No records found"
-          />
-        </div>
-      )}
-    </ToolkitProvider>
-  </div>
-);
+import liquorService from "../../services/liquor-service";
+import HomeList from "../../components/Home/HomeList";
+import Auxilary from "../../hoc/Auxilary";
+import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -46,7 +15,7 @@ export class Home extends Component {
       pageSize: 5,
       pageNumber: 1,
       searchKeyword: "",
-      sortColumn: "ClientName",
+      sortColumn: "LiquorName",
       sortOrder: "Asc",
     };
   }
@@ -101,42 +70,19 @@ export class Home extends Component {
   };
 
   render() {
-    const columns = [
-      {
-        dataField: "liquorId",
-        text: "Liquor ID",
-        sort: true,
-      },
-      {
-        dataField: "liquorName",
-        text: "Liquor Name",
-        sort: true,
-      },
-      {
-        dataField: "liquorType",
-        text: "Liquor Type",
-        sort: true,
-      },
-    ];
     return (
-      <div>
-        <Breadcrumb tag="nav" listTag="div">
-          <BreadcrumbItem active tag="span">
-            Liquors
-          </BreadcrumbItem>
-        </Breadcrumb>
-        <h1>Liquors</h1>
-        <br />
-        <RemoteTable
-          columns={columns}
-          keyField="liquorId"
-          data={this.state.liquors}
+      <Auxilary>
+        <Link to={"/add-liquor"}>
+          <Button>Add</Button>
+        </Link>
+        <HomeList
+          liquors={this.state.liquors}
           page={this.state.pageNumber}
           sizePerPage={this.state.pageSize}
           totalSize={this.state.totalCount}
-          onTableChange={this.handleTableChange}
+          handleTableChange={this.handleTableChange}
         />
-      </div>
+      </Auxilary>
     );
   }
 }
